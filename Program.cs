@@ -10,10 +10,10 @@ while (xd)
     jose.X=Double.Parse(Console.ReadLine());
     Console.WriteLine("Introduci el 2do valor a dar");
     jose.Y=Double.Parse(Console.ReadLine());
-    Console.WriteLine("La suma es 10+20: " + jose.suma());
-    Console.WriteLine("La multiplicacion de 10 y 20: " + jose.multiplicacion());
-    Console.WriteLine("La division  de 20 y 10: " + jose.division());
-    Console.WriteLine("La resta  de 20 y 10: " + jose.resta());
+    Console.WriteLine("La suma de los valores ingresados:"+jose.x+"y "+jose.y+"es" + jose.suma());
+    Console.WriteLine("La multiplicacion de los anteriores valores es: " + jose.multiplicacion());
+    Console.WriteLine("La division  es: " + jose.division());
+    Console.WriteLine("La resta  es: " + jose.resta());
     Console.WriteLine("Queres seguir con la calculadora pibe");
     nico=Int32.Parse(Console.ReadLine());
     if (nico!=0)
@@ -24,8 +24,8 @@ while (xd)
 
 public class Calculadora
 {
-    private double x;
-    private double y;
+    public double x;
+    public double y;
     public double X{
         get=>x;
         set=>x=value;
