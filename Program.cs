@@ -18,6 +18,7 @@ while (xd)
     nico=Int32.Parse(Console.ReadLine());
     if (nico!=0)
     {
+        Console.WriteLine("Fin de la ejecucion de la calculadora");
         xd=false;
     }
 }
