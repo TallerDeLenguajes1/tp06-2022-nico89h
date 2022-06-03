@@ -1,7 +1,9 @@
 ﻿//inicio de el punto 2
 using System;
 double MontoTresEmpleados=0;
-
+int []edad= new int[3];
+int []antiguedad=new int[3];
+double []salario=new double[3];
 Empleado []jose= new Empleado[3]; // creacion de el espacio de memoria para el arreglo
 for (int i = 0; i < 3; i++)
 {
@@ -75,70 +77,93 @@ for (int i = 0; i < 3; i++)
     }
     //ya esta todo cargrado en la clase
 
-    int antiguedad = DateTime.Today.AddTicks(-jose[i].FechaIngreso.Ticks).Year - 1; // manera de obtener el año
-    int edad = DateTime.Today.AddTicks(-jose[i].FechaNacimiento.Ticks).Year - 1; // edad del pibe
-    Console.WriteLine("La antiguedad es: " + antiguedad);
+    antiguedad[i] = DateTime.Today.AddTicks(-jose[i].FechaIngreso.Ticks).Year - 1; // manera de obtener el año
+    
+    edad[i] = DateTime.Today.AddTicks(-jose[i].FechaNacimiento.Ticks).Year - 1; // edad del pibe
+    Console.WriteLine("La antiguedad es: " + antiguedad[i]);
     Console.WriteLine("La edad es: " + edad);
 
     if (jose[i].Genero==genero.F)
     {
-        if (edad>=60)
+        if (edad[i]>=60)
         {
             System.Console.WriteLine("Ya se puede jubilar");
         }else
         {
-            System.Console.WriteLine("Le quedan :"+(60-edad)+"Para poder jubilarse");
+            System.Console.WriteLine("Le quedan :"+(60-edad[i])+"Para poder jubilarse");
         }
     }else
     {
-        if (edad>=65)
+        if (edad[i]>=65)
         {
             System.Console.WriteLine("Ya se puede jubilar");
         }else
         {
-            System.Console.WriteLine("Le quedan :"+(65-edad)+"Para poder jubilarse");
+            System.Console.WriteLine("Le quedan :"+(65-edad[i])+"Para poder jubilarse");
         }
     }
     //inicio de el calculo de adicional o salario
-    double salario;
+    
     if (jose[i].cargos==cargo.Ingeniero || jose[i].cargos==cargo.Especialista)
     {
-        if (antiguedad<20)
+        if (antiguedad[i]<20)
         {
-            salario=jose[i].SueldoBasico+(jose[i].SueldoBasico)/100+jose[i].SueldoBasico*50/100;
+            salario[i]=jose[i].SueldoBasico+(jose[i].SueldoBasico)/100+jose[i].SueldoBasico*50/100;
             if (jose[i].EstadoCivil==estadoCivil.C)
             {
-                salario=jose[i].SueldoBasico+(jose[i].SueldoBasico)/100+jose[i].SueldoBasico*50/100+15000;
+                salario[i]=jose[i].SueldoBasico+(jose[i].SueldoBasico)/100+jose[i].SueldoBasico*50/100+15000;
             }
         }else
         {
-            salario=jose[i].SueldoBasico+(jose[i].SueldoBasico*25)/100+jose[i].SueldoBasico*50/100;
+            salario[i]=jose[i].SueldoBasico+(jose[i].SueldoBasico*25)/100+jose[i].SueldoBasico*50/100;
             if (jose[i].EstadoCivil==estadoCivil.C)
             {
-                salario=jose[i].SueldoBasico+(jose[i].SueldoBasico)/100+jose[i].SueldoBasico*50/100+15000;
+                salario[i]=jose[i].SueldoBasico+(jose[i].SueldoBasico)/100+jose[i].SueldoBasico*50/100+15000;
             }
         }    
     }else
     {
-        if (antiguedad<20)
+        if (antiguedad[i]<20)
         {
-            salario=jose[i].SueldoBasico+(jose[i].SueldoBasico)/100;
+            salario[i]=jose[i].SueldoBasico+(jose[i].SueldoBasico)/100;
             if (jose[i].EstadoCivil==estadoCivil.C)
             {
-                salario=jose[i].SueldoBasico+(jose[i].SueldoBasico)/100+15000;
+                salario[i]=jose[i].SueldoBasico+(jose[i].SueldoBasico)/100+15000;
             }
         }else
         {
-            salario=jose[i].SueldoBasico+(jose[i].SueldoBasico*25)/100;
+            salario[i]=jose[i].SueldoBasico+(jose[i].SueldoBasico*25)/100;
             if (jose[i].EstadoCivil==estadoCivil.C)
             {
-                salario=jose[i].SueldoBasico+(jose[i].SueldoBasico)/100+15000;
+                salario[i]=jose[i].SueldoBasico+(jose[i].SueldoBasico)/100+15000;
             }
         }
     }
     System.Console.WriteLine("El salario total es de : "+salario);
-    MontoTresEmpleados=salario+MontoTresEmpleados;
+    MontoTresEmpleados=salario[i]+MontoTresEmpleados;
 }
+int mayor=0;
+int r=0;
+for (int i = 0; i < 3; i++)
+{
+    if (i==0)
+    {
+        mayor=edad[i];
+        r=i;
+    }else
+    {
+        if (mayor<edad[i])
+        {
+           mayor=edad[i];
+           r=i; 
+        }
+    }
+}
+//mostrando el mas proximo a jubilarse
+System.Console.WriteLine("El nombre de la persona mas proxima a jubilarese es: "+ jose[r].Nombre);
+System.Console.WriteLine("El salario de el es : "+ salario[r]);
+System.Console.WriteLine("La antiguedad es de: "+ antiguedad[r]);
+System.Console.WriteLine("La edad de la persona es: "+ edad[r]);
 enum genero {
     F ,
     M,
