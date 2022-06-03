@@ -81,7 +81,7 @@ for (int i = 0; i < 3; i++)
     
     edad[i] = DateTime.Today.AddTicks(-jose[i].FechaNacimiento.Ticks).Year - 1; // edad del pibe
     Console.WriteLine("La antiguedad es: " + antiguedad[i]);
-    Console.WriteLine("La edad es: " + edad);
+    Console.WriteLine("La edad es: " + edad[i]);
 
     if (jose[i].Genero==genero.F)
     {
@@ -139,7 +139,7 @@ for (int i = 0; i < 3; i++)
             }
         }
     }
-    System.Console.WriteLine("El salario total es de : "+salario);
+    System.Console.WriteLine("El salario total es de : "+salario[i]);
     MontoTresEmpleados=salario[i]+MontoTresEmpleados;
 }
 int mayor=0;
